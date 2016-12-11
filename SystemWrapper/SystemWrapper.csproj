@@ -90,6 +90,7 @@
     <Compile Include="Collections\Specialized\NameValueCollectionFactory.cs" />
     <Compile Include="Collections\Specialized\NameValueCollectionWrap.cs" />
     <Compile Include="Configuration\ConfigurationManagerWrap.cs" />
+    <Compile Include="Configuration\ConfigurationWrap.cs" />
     <Compile Include="ConsoleWrap.cs" />
     <Compile Include="Data\DataTable\DataTableFactory.cs" />
     <Compile Include="Data\DataTable\DataTableWrap.cs" />
@@ -131,10 +132,6 @@
     <Compile Include="Net\HttpWebRequestWrapFactory.Generated.cs" />
     <Compile Include="Net\HttpWebResponseWrap.cs" />
     <Compile Include="Net\HttpWebResponseWrapFactory.Generated.cs" />
-    <Compile Include="Net\Mail\MailAddressCollectionWrap.cs" />
-    <Compile Include="Net\Mail\MailAddressWrap.cs" />
-    <Compile Include="Net\Mail\MailAddressWrapFactory.Generated.cs" />
-    <Compile Include="Net\Mail\MailMessageWrap.cs" />
     <Compile Include="Net\Mail\SmtpClientWrap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\AssemblyNameWrap.cs" />
@@ -212,7 +209,7 @@
     </GetAssemblyIdentity>
     <Message Text="Assembly version: %(OutputAssemblyInfo.Version)" />
   </Target>
-  <Target Name="Package">
+  <Target Name="Package" DependsOnTargets="AfterBuild">
     <MakeDir Directories="$(MSBuildThisFileDirectory)..\publish" Condition=" !Exists('$(MSBuildThisFileDirectory)..\publish') " />
     <!-- Package the project -->
     <Exec WorkingDirectory="$(MSBuildThisFileDirectory)" Command="$(MSBuildThisFileDirectory)..\.nuget\NuGet.exe pack &quot;$(MSBuildProjectName).nuspec&quot; -Verbosity detailed -Symbols -OutputDir &quot;$(MSBuildThisFileDirectory)..\publish&quot; -Version %(OutputAssemblyInfo.Version) -Properties &quot;Configuration=Release&quot;" />

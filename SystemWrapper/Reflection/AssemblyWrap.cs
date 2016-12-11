@@ -4,9 +4,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Security.Policy;
-using SystemWrapper.IO;
 using SystemInterface.IO;
 using SystemInterface.Reflection;
+using SystemWrapper.IO;
 
 namespace SystemWrapper.Reflection
 {
@@ -22,13 +22,14 @@ namespace SystemWrapper.Reflection
         #region Constructors and Initializers
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.Reflection.AssemblyWrap"/> class. 
+        /// Initializes a new instance of the <see cref="T:SystemWrapper.Reflection.AssemblyWrap"/> class.
         /// </summary>
         public AssemblyWrap()
-        { }
+        {
+        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.Reflection.AssemblyWrap"/> class. 
+        /// Initializes a new instance of the <see cref="T:SystemWrapper.Reflection.AssemblyWrap"/> class.
         /// </summary>
         /// <param name="assembly">Assembly object.</param>
         public AssemblyWrap(Assembly assembly)
@@ -37,7 +38,7 @@ namespace SystemWrapper.Reflection
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SystemWrapper.Reflection.AssemblyWrap"/> class. 
+        /// Initializes a new instance of the <see cref="T:SystemWrapper.Reflection.AssemblyWrap"/> class.
         /// </summary>
         /// <param name="assembly">Assembly object.</param>
         public void Initialize(Assembly assembly)
@@ -249,6 +250,12 @@ namespace SystemWrapper.Reflection
         public IAssembly LoadFrom(string assemblyFile)
         {
             return new AssemblyWrap(Assembly.LoadFrom(assemblyFile));
+        }
+
+        /// <inheritdoc />
+        public IAssembly Load(string assemblyString)
+        {
+            return new AssemblyWrap(Assembly.Load(assemblyString));
         }
     }
 }
